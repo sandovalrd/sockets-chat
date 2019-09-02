@@ -10,18 +10,20 @@ var usuario = {
 }
 
 socket.on('connect', function() {
-    socket.emit('entrarChat', usuario, (resp) => {
-        console.log(resp);
+    socket.emit('entrarChat', usuario, (usuarios) => {
+        renderizarUsuarios(usuarios);
     });
 });
 
 // Escuchar información
-socket.on('enviarMensaje', function(data) {
-    console.log('Servidor:', data.mensaje);
+socket.on('enviarMensaje', function(mensaje) {
+    // console.log('Servidor:', data.mensaje);
+    renderizarMensajes(mensaje, false);
+    scrollBottom();
 });
 
-socket.on('listaPersonas', function(mensaje) {
-    console.log('Servidor:', mensaje);
+socket.on('listaPersonas', (usuarios) => {
+    renderizarUsuarios(usuarios);
 });
 
 socket.on('mensajePrivado', (mensaje) => {

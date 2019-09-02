@@ -30,7 +30,7 @@ class Usuarios {
     }
 
     getPersonasSala(sala) {
-        return this.personas.filter(item => item.sala === sala);
+        return this.personas.filter(item => item.sala === sala)
     }
 }
 
